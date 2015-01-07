@@ -4,14 +4,14 @@ ESP8266 Docker Buildbox
 Usage
 =====
 
-> sudo docker build .
+> sudo docker build -t phuonglm/esp8266-builder .
 
 Export the serial adaptor
 =========================
 
 You can export the ttyUSB0 device from the HOST to the GUEST instance with this command:
 
-> root@mybox# docker run --privileged -v=/dev/ttyUSB0:/dev/tty-from-host -i -t zoobab/esp8266-docker-buildbox /bin/bash
+> root@mybox# docker run --privileged -v=/dev/ttyUSB0:/dev/tty-from-host -v=/mnt/Storage/phuonglm/Projects/external/esp8266:/home/workspace -i -t phuonglm/esp8266-builder
 > 
 > root@7dfd28f629ce:/# ls /dev/tty*
 > 

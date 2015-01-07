@@ -1,4 +1,4 @@
-FROM ubuntu:12.04
+FROM ubuntu:14.04
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q git autoconf build-essential gperf bison flex texinfo libtool libncurses5-dev wget apt-utils gawk sudo unzip libexpat-dev python python-pip vim
@@ -20,6 +20,6 @@ RUN ln -s /opt/Espressif/tools/esptool/esptool /usr/local/bin/esptool
 RUN su esp8266 -c "cd /opt/Espressif/tools/; git clone https://github.com/themadinventor/esptool.git esptool_py"
 RUN cd /opt/Espressif/tools/esptool_py/; sudo pip install -e .
 
-RUN echo 'export XTENSA_TOOLS_ROOT=/opt/Espressif/tools/crosstool-NG/builds/xtensa-lx106-elf/bin/' >> /root/.profile && echo 'export SDK_EXTRA_INCLUDES=/opt/Espressif/ESP8266_SDK/include' >> /root/.profile && echo 'export SDK_EXTRA_LIBS=/opt/Espressif/ESP8266_SDK/lib/' >> /root/.profile && echo 'export SDK_BASE=/opt/Espressif/ESP8266_SDK/' >> /root/.profile && echo 'export ESPPORT=/dev/ttyUSB0' >> /root/.profile && echo 'export PATH=/opt/Espressif/tools/crosstool-NG/builds/xtensa-lx106-elf/bin/:$PATH' >> /root/.profile
+RUN echo 'export XTENSA_TOOLS_ROOT=/opt/Espressif/tools/crosstool-NG/builds/xtensa-lx106-elf/bin/' >> /root/.profile && echo 'export SDK_EXTRA_INCLUDES=/opt/Espressif/ESP8266_SDK/include' >> /root/.profile && echo 'export SDK_EXTRA_LIBS=/opt/Espressif/ESP8266_SDK/lib/' >> /root/.profile && echo 'export SDK_BASE=/opt/Espressif/ESP8266_SDK/' >> /root/.profile && echo 'export ESPPORT=/dev/ttyUSB0' >> /root/.profile && echo 'export PATH=/opt/Espressif/tools/crosstool-NG/builds/xtensa-lx106-elf/bin/:$PATH' >> /root/.profile && echo 'chmod 777 /dev/ttyUSB0' >> /root/.profile
 
 ENTRYPOINT ["/bin/bash", "-l"]
